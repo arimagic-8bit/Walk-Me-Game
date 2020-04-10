@@ -1,0 +1,91 @@
+// // Creating different views and starting and ending the game
+
+let game // hold my game
+let splashScreen // start game screen
+let gameScreen // Game screen
+let gameOverScreen // GameOver screen
+
+// NAME and Instructions screen OK
+// Here, include de RANKING screen after
+
+// Functions
+
+// Create HTML elements
+function buildDom (htmlString) {
+  const div = document.createElement('div')
+  div.innerHTML = htmlString
+  return div.children[0]
+}
+
+// splash screen
+
+function createSplash (params) {
+  splashScreen = buildDom(`
+<main>
+<h1 class= "main-title">WALK ME!</h1>
+ <img/>
+ <button>START</button>
+ </main>
+ `)
+  document.body.appendChild(splashScreen)
+
+  const startButton = splashScreen.querySelector('button')
+  startButton.addEventListener('click', function (params) {
+    startGame()
+  })
+}
+
+// game screen
+
+function createGameScreen (params) {
+  gameScreen = buildDom(`
+<main class="game container">
+    <header>
+      <div class="energy-bar">
+        <span class="label">ENERGY BAR:</span>
+        <span class="value"></span>
+      </div>
+      <div class="score">
+        <span class="label">SCORE:</span>
+        <span class="value"></span>
+      </div>
+    </header>
+    <div class="canvas-container">
+      <canvas></canvas>
+    </div>
+  </main>
+`)
+  document.body.appendChild(gameScreen)
+}
+
+// gameOver screen
+
+function createGameOver (params) {
+
+}
+
+// start the game, end the game
+
+function startGame (params) {
+  removeScreen()
+  createGameScreen()
+
+  game = new Game()
+  game.gameScreen = gameScreen
+}
+
+function endGame (params) {
+
+}
+
+// Remove screen everytime another screen will show
+
+function removeScreen (params) {
+  document.body.innerHTML = ''
+}
+
+// Run the start screen when page is loaded
+
+window.addEventListener('load', createSplash)
+
+// ranking screen
