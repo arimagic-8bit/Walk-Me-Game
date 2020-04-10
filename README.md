@@ -38,19 +38,67 @@ A dog that only jumps and has to continue running without touching negative elem
 
 ##### **Properties**
 
+- canvas
+- ctx
+- player
+- name
+- obstacles
+- food
+- gameIsOver
+- energy bar
+- loopCount
+- timeScore
+
 ##### **Methods**
+
+- start
+- startLoop
+- checkCollision
+- gameOver
+- reduceEnergy
+- printEnergy
+- printScore
 
 #### 4. Player Constructor
 
 ##### **Properties**
 
+- canvas
+- ctx
+- x position
+- y position
+- width
+- height
+- lives
+- image
+- direction
+
 ##### **Methods**
+
+draw
+jump
+collidedWithObstacle
+catchedFood
+removeEnergy
+addEnergy
 
 #### 5. Obstacle Constructor
 
 ##### **Properties**
 
+- canvas
+- ctx
+- x position
+- y position
+- width
+- height
+- row
+- speed
+- image
+
 ##### **Methods**
+
+- draw
 
 #### 6. Bonus Constructor
 
@@ -118,6 +166,7 @@ A dog that only jumps and has to continue running without touching negative elem
 - Increase game difficulty by time (it moves faster or appears more negative elements)
 - Dog name registration and scoreboard (to compete again other players)
 - Sounds and visual effects (when collides, looses, barks or eats)
+- Some food will have a punctuation multiplier
 
 ### Links
 
