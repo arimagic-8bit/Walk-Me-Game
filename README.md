@@ -14,7 +14,7 @@ A dog that only jumps and has to continue running without touching negative elem
 
 2. style.css
 
-3. ### main.js
+3. main.js
 
 4. game.js
 
