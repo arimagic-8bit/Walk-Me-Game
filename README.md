@@ -110,7 +110,7 @@ A dog that only jumps and has to continue running without touching negative elem
 
   
 
-  ### Backlog
+### Backlog
 
 - Bark bonus when collide to some delicious food and use it to avoid some negative element.
 - Increase energy bar when eating
@@ -126,7 +126,9 @@ A dog that only jumps and has to continue running without touching negative elem
 https://trello.com/b/E9ePiygb/walk-me-game
 
 **Git**
+
 https://github.com/arimagic-8bit/Walk-Me-Game
 
 **Slides**
+
 URls for the project presentation (slides) Link Slides.com
