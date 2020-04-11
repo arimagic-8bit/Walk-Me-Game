@@ -60,8 +60,20 @@ function createGameScreen (params) {
 
 // gameOver screen
 
-function createGameOver (params) {
+function createGameOver (score) {
+  gameOverScreen = buildDom(`
+    <main class ="game-over">
+      <h2>Dog fell asleep</h2>
+      <p>Your Score: <span>${score}</span></p>
+      <img/>
+      <button>RESTART</button>
+    </main>
+  `)
 
+  var restartButton = gameOverScreen.querySelector('button')
+  restartButton.addEventListener('click', startGame)
+
+  document.body.appendChild(gameOverScreen)
 }
 
 // start the game, end the game
@@ -72,10 +84,14 @@ function startGame (params) {
 
   game = new Game()
   game.gameScreen = gameScreen
+
+  // Start the game
+  game.start()
 }
 
-function endGame (params) {
-
+function endGame (score) {
+  removeScreen()
+  createGameOver(score)
 }
 
 // Remove screen everytime another screen will show
