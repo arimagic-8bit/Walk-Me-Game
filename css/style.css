@@ -41,7 +41,8 @@ body {
 
 @media (min-width: 768px) {
   .container {
-    max-width: 728px; /* Resizes the container to 728px for large screens */
+    max-width: 1000px; /* Resizes the container to 728px for large screens */
+    max-height: 600px;
     margin: 0 auto;
   }
 }
@@ -79,4 +80,5 @@ body {
 
 .game .canvas-container {
   flex: 1;
+  border: solid red;
 }

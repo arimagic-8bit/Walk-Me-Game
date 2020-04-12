@@ -2,48 +2,71 @@
 
 class Dog {
   constructor (canvas, energy) {
+    // dog properties
     this.canvas = canvas
     this.ctx = this.canvas.getContext('2d')
     this.energy = energy
-    this.size = 100
-    this.x = 50
-    this.y = this.canvas.height / 2 // I take the half of the canvas y
-    this.initialY = this.canvas.height / 2
-    this.initialX = 50
+    this.size = 100 // size of the dog
+    this.x = 50 // initial x where dog starts
+    this.y = this.canvas.height - this.size // // initial y where dog starts
+
+    // handle dog's direction
     this.direction = 0// 0 not moving // -1 while jumping // 1 returning initial position
-    // this.jumping = true
-    this.ySpeed = 2
-    this.dogTop = this.y
-    this.dogBottom = this.y + this.size
+    this.jumping = false
+    this.ySpeed = 0
+
+    // handle collision
+    this.dogTop = this.y // parte de arriba del perro
+    this.dogBottom = this.y + this.size // parte de abajo del perro
 
     this.screenTop = 0
-    // const screenBottom = this.canvas.height
+    this.screenBottom = this.canvas.height
   }
 
-  setJump (direction) {
-    if (direction === 'up') { // button up
-      this.direction = -1
-    } else if (direction !== 'up') {
+  setJump (event) {
+    if (event === 'up' && this.jumping === false) { // button up
+      this.ySpeed -= 20
+      this.jumping = true
+      this.handleMaxJump()
+    } /* else if (direction !== 'up')  {
       this.direction = 1 // 1 o 0?
-    }
+    } */
+  }
+
+  handleMaxJump () {
+    // if (this.y * this.ySpeed === 80) {
+    //   this.ySpeed += 20
+    //   this.jumping = false
+    // }
   }
 
   handleScreenCollision () {
-    if (this.dogTop <= screenTop) { // solo tengo que mirar la colisión con el top
-      this.setJump('down')
+    Dog.ySpeed *= 1.5 // gravity
+    Dog.y *= Dog.ySpeed
+    Dog.ySpeed *= 0.9 // friction when dog touches floor and reduce its speed
+
+    if (this.dogTop <= this.screenTop + 200) { // solo tengo que mirar la colisión con el top
+      this.ySpeed += 20
+    }
+    console.log(this.dogTop)
+    if (this.dogBottom > this.screenBottom) {
+      this.ySpeed = 0
+      this.y = this.canvas.height - this.size
+      this.jumping = false
     }
   }
 
-  handleBottomCollision () {
+  /* handleBottomCollision () {
     if (this.dogBottom >= this.size + this.initialY) {
       this.direction = 0
     }
-  }
+  } */
 
   updateDogPosition () {
-    this.y = this.y + this.direction * this.ySpeed
+    this.y = this.y + this.ySpeed
 
     this.dogTop = this.y
+    this.dogBottom = this.dogTop + this.size
 
     this.screenTop = 0
     // const screenBottom = this.canvas.height

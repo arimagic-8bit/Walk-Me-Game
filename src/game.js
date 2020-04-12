@@ -83,7 +83,7 @@ class Game {
 
       this.player.handleScreenCollision()
       this.player.updateDogPosition()
-      this.player.handleBottomCollision()
+      // this.player.handleBottomCollision()
 
       // move elements
 

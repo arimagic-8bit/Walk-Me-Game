@@ -5,10 +5,10 @@ class Obstacles {
     this.canvas = canvas
     this.ctx = this.canvas.getContext('2d')
 
-    this.size = 30
+    this.size = 40
 
-    this.x = this.canvas.width + this.size
-    this.y = y
+    this.x = this.canvas.width + this.size // posición en el eje x
+    this.y = y // pasamos la posición del eje y como argumento
     this.speed = 3
   }
 
