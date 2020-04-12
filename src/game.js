@@ -11,6 +11,12 @@ class Game {
     this.ctx = null
     this.energy = 0
     this.gameScreen = null
+
+    // check number of elements
+
+    this.maxNumberObstacles = 2
+
+    this.maxNumberFood = 2
   }
 
   // instantiate player, set the canvas and start canvas loop
@@ -37,14 +43,14 @@ class Game {
 
     // Event listerner for jump
 
-    function handleKeyUp (event) {
+    function handleKeyDown (event) {
       if (event.key === 'ArrowUp') {
         this.player.setJump('up')
       }
     }
 
-    const boundHandleKeyUp = handleKeyUp.bind(this) // 1.hacemos bind para que ahora se encuentre en el game scope
-    document.addEventListener('keyup', boundHandleKeyUp) // 2.event listener se encuentra en el scope de Window
+    const boundHandleKeyDown = handleKeyDown.bind(this) // 1.hacemos bind para que ahora se encuentre en el game scope
+    document.addEventListener('keydown', boundHandleKeyDown) // 2.event listener se encuentra en el scope de Window
 
     // Start the canvas loop
 
@@ -57,22 +63,30 @@ class Game {
 
       // 1.1 create new obstacles random
 
-      if (Math.random() > 0.98) {
+      if (Math.random() > 0.80 && this.obstacles.length < this.maxNumberObstacles) {
         const randomHeightPositionObs = this.canvas.height * Math.random()
         const newObstacles = new Obstacles(this.canvas, randomHeightPositionObs, 5)
 
-        this.obstacles.push(newObstacles)
+        if (this.obstacles.length === 0) {
+          this.obstacles.push(newObstacles)
+        } else if (this.obstacles[this.obstacles.length - 1].x <= this.canvas.width / 2) {
+          this.obstacles.push(newObstacles)
+        }
       }
 
       // player hit obstacle
 
       // 1.2 create new food random
 
-      if (Math.random() > 0.99) {
+      if (Math.random() > 0.99 && this.food.length < this.maxNumberFood) {
         const randomHeightPositionFood = this.canvas.height * Math.random()
         const newFood = new Food(this.canvas, randomHeightPositionFood, 5)
 
-        this.food.push(newFood)
+        if (this.food.length === 0) {
+          this.food.push(newFood)
+        } else if (this.food[this.food.length - 1].x <= this.canvas.width / 2) {
+          this.food.push(newFood)
+        }
       }
 
       // player hit food
@@ -143,7 +157,6 @@ class Game {
     this.obstacles.forEach((obstacle) => {
       if (this.player.didCollideWithObs(obstacle)) {
         this.player.removeEnergy()
-        console.log(this.player.energy)
 
         obstacle.x = -1 * obstacle.size
 
@@ -156,7 +169,6 @@ class Game {
     this.food.forEach((food) => {
       if (this.player.didCollideWithFood(food)) {
         this.player.addEnergy()
-        console.log(this.player.energy)
 
         food.x = -1 * food.size
       }

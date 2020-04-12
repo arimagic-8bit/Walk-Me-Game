@@ -25,19 +25,9 @@ class Dog {
 
   setJump (event) {
     if (event === 'up' && this.jumping === false) { // button up
-      this.ySpeed -= 20
+      this.ySpeed -= 9
       this.jumping = true
-      this.handleMaxJump()
-    } /* else if (direction !== 'up')  {
-      this.direction = 1 // 1 o 0?
-    } */
-  }
-
-  handleMaxJump () {
-    // if (this.y * this.ySpeed === 80) {
-    //   this.ySpeed += 20
-    //   this.jumping = false
-    // }
+    }
   }
 
   handleScreenCollision () {
@@ -48,19 +38,12 @@ class Dog {
     if (this.dogTop <= this.screenTop + 200) { // solo tengo que mirar la colisión con el top
       this.ySpeed += 20
     }
-    console.log(this.dogTop)
     if (this.dogBottom > this.screenBottom) {
       this.ySpeed = 0
       this.y = this.canvas.height - this.size
       this.jumping = false
     }
   }
-
-  /* handleBottomCollision () {
-    if (this.dogBottom >= this.size + this.initialY) {
-      this.direction = 0
-    }
-  } */
 
   updateDogPosition () {
     this.y = this.y + this.ySpeed
@@ -69,7 +52,6 @@ class Dog {
     this.dogBottom = this.dogTop + this.size
 
     this.screenTop = 0
-    // const screenBottom = this.canvas.height
   }
 
   removeEnergy () { // restar barra energía por tiempo // restar por colisión // aumentar por colisión

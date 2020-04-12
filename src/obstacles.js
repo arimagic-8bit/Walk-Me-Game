@@ -9,7 +9,7 @@ class Obstacles {
 
     this.x = this.canvas.width + this.size // posición en el eje x
     this.y = y // pasamos la posición del eje y como argumento
-    this.speed = 3
+    this.speed = 5
   }
 
   drawObstacle () {
@@ -24,10 +24,6 @@ class Obstacles {
 
   isInsideScreen () { // obstacle is inside if +0
     return this.x + this.size > 0
-  }
-
-  isOutsideScreen () { // obstacle is outside if -0
-    return this.x + this.size < 0
   }
 }
 
@@ -55,9 +51,5 @@ class Food {
 
   isInsideScreen () {
     return this.x + this.size > 0
-  }
-
-  isOutsideScreen () { // obstacle is outside if -0
-    return this.x + this.size < 0
   }
 }
