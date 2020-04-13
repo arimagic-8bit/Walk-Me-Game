@@ -55,10 +55,10 @@ class Dog {
     this.screenTop = 0
   }
 
-  removeEnergy () { // restar barra energía por tiempo // restar por colisión // aumentar por colisión
-    // this.energyBar.setAttribute('width', '-50px')
+  /* removeEnergy () { // restar barra energía por tiempo // restar por colisión // aumentar por colisión
+    // this.energyBar.style -= '50px'
     this.energy -= 1
-  }
+  } */
 
   addEnergy () {
     if (this.energy < 5) { this.energy += 1 }

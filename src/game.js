@@ -11,6 +11,7 @@ class Game {
     this.ctx = null
     this.energy = 0
     this.gameScreen = null
+    this.energyYellow = null
 
     // background properties
 
@@ -37,6 +38,7 @@ class Game {
 
     // Save reference for energy element
     this.energy = this.gameScreen.querySelector('.energy-bar .value')
+    this.energyYellow = this.gameScreen.querySelector('.energy-yellow')
 
     // Save reference for score element
     this.scoreElement = this.gameScreen.querySelector('.score .value')
@@ -52,12 +54,12 @@ class Game {
 
     // set background src
 
-    // this.background1 = new Background(0, this.canvas, '/img/Background/Hills Layer 01.png')
-    // this.background2 = new Background(1, this.canvas, '/img/Background/Hills Layer 02.png')
-    // this.background3 = new Background(2, this.canvas, '/img/Background/Hills Layer 03.png')
-    // this.background4 = new Background(3, this.canvas, '/img/Background/Hills Layer 04.png')
-    // this.background5 = new Background(4, this.canvas, '/img/Background/Hills Layer 05.png')
-    // this.background6 = new Background(5, this.canvas, '/img/Background/Hills Layer 06.png')
+    this.background1 = new Background(0, this.canvas, './../img/Background/Hills Layer 01.png')
+    this.background2 = new Background(1, this.canvas, './../img/Background/Hills Layer 02.png')
+    this.background3 = new Background(2, this.canvas, './../img/Background/Hills Layer 03.png')
+    this.background4 = new Background(3, this.canvas, './../img/Background/Hills Layer 04.png')
+    this.background5 = new Background(4, this.canvas, './../img/Background/Hills Layer 05.png')
+    this.background6 = new Background(5, this.canvas, './../img/Background/Hills Layer 06.png')
 
     // Event listerner for jump
 
@@ -116,6 +118,13 @@ class Game {
 
       // update background
 
+      this.background1.move()
+      this.background2.move()
+      this.background3.move()
+      this.background4.move()
+      this.background5.move()
+      this.background6.move()
+
       // check if enemies are off screen
 
       const obsOnScreen = this.obstacles.filter(function (obstacle) {
@@ -140,7 +149,13 @@ class Game {
 
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-      // paint canvas
+      // paint canvas background
+      this.background1.draw()
+      this.background2.draw()
+      this.background3.draw()
+      this.background4.draw()
+      this.background5.draw()
+      this.background6.draw()
 
       // draw DOG
 
@@ -168,14 +183,18 @@ class Game {
     loop() // initial invocation
   }
 
+  removeEnergy () {
+    this.energyYellow.style.width -= '50px'
+  }
+
   checkCollisions () {
     this.obstacles.forEach((obstacle) => {
       if (this.player.didCollideWithObs(obstacle)) {
-        this.player.removeEnergy()
+        // this.energyYellow.removeEnergy()
 
         obstacle.x = -1 * obstacle.size
 
-        if (this.player.energy <= 0) {
+        if (this.energyYellow.width <= '0px') {
           this.gameOver()
         }
       }
@@ -194,8 +213,6 @@ class Game {
     this.gameIsOver = true
     endGame(this.score)
   }
-
-  reduceEnergyBar () {}
 
   printEnergy () {
     this.energy.innerHTML = this.player.energy

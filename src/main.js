@@ -42,8 +42,8 @@ function createGameScreen (params) {
 <main class="game container">
     <header>
       <div class="energy-bar">
-        
-        <span class="label">ENERGY BAR:</span>
+        <div class ="energy-yellow">
+        </div>
         <span class="value"></span>
       </div>
       <div class="score">

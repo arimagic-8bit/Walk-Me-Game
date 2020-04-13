@@ -84,9 +84,17 @@ body {
 }
 
 .energy-bar {
-  background-color: yellow;
+  background-color: lightgray;
   height: 30px;
   width: 500px;
   margin: 0 auto;
-  border: solid 3px rgb(26, 27, 23);
+  border: solid 3px rgb(76, 78, 68);
+}
+
+.energy-yellow {
+  background-color: yellow;
+  width: 100%;
+  height: 100%;
+  position: inherit;
+  bottom: 56px;
 }
