@@ -42,6 +42,7 @@ function createGameScreen (params) {
 <main class="game container">
     <header>
       <div class="energy-bar">
+        
         <span class="label">ENERGY BAR:</span>
         <span class="value"></span>
       </div>
@@ -87,6 +88,8 @@ function startGame (params) {
 
   // Start the game
   game.start()
+
+  // when game starts, load the background
 }
 
 function endGame (score) {

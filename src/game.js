@@ -12,6 +12,15 @@ class Game {
     this.energy = 0
     this.gameScreen = null
 
+    // background properties
+
+    this.background1 = null
+    this.background2 = null
+    this.background3 = null
+    this.background4 = null
+    this.background5 = null
+    this.background6 = null
+
     // check number of elements
 
     this.maxNumberObstacles = 2
@@ -40,6 +49,15 @@ class Game {
     this.canvas.height = this.containerHeight
 
     this.player = new Dog(this.canvas, 5)
+
+    // set background src
+
+    // this.background1 = new Background(0, this.canvas, '/img/Background/Hills Layer 01.png')
+    // this.background2 = new Background(1, this.canvas, '/img/Background/Hills Layer 02.png')
+    // this.background3 = new Background(2, this.canvas, '/img/Background/Hills Layer 03.png')
+    // this.background4 = new Background(3, this.canvas, '/img/Background/Hills Layer 04.png')
+    // this.background5 = new Background(4, this.canvas, '/img/Background/Hills Layer 05.png')
+    // this.background6 = new Background(5, this.canvas, '/img/Background/Hills Layer 06.png')
 
     // Event listerner for jump
 
@@ -74,8 +92,6 @@ class Game {
         }
       }
 
-      // player hit obstacle
-
       // 1.2 create new food random
 
       if (Math.random() > 0.99 && this.food.length < this.maxNumberFood) {
@@ -97,9 +113,8 @@ class Game {
 
       this.player.handleScreenCollision()
       this.player.updateDogPosition()
-      // this.player.handleBottomCollision()
 
-      // move elements
+      // update background
 
       // check if enemies are off screen
 

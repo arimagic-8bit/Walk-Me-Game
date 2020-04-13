@@ -1,11 +1,12 @@
 'use strict'
 
 class Dog {
-  constructor (canvas, energy) {
+  constructor (canvas, energy, energyBar) {
     // dog properties
     this.canvas = canvas
     this.ctx = this.canvas.getContext('2d')
     this.energy = energy
+    this.energyBar = energyBar
     this.size = 100 // size of the dog
     this.x = 50 // initial x where dog starts
     this.y = this.canvas.height - this.size // // initial y where dog starts
@@ -55,6 +56,7 @@ class Dog {
   }
 
   removeEnergy () { // restar barra energía por tiempo // restar por colisión // aumentar por colisión
+    // this.energyBar.setAttribute('width', '-50px')
     this.energy -= 1
   }
 

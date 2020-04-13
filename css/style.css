@@ -82,3 +82,11 @@ body {
   flex: 1;
   border: solid red;
 }
+
+.energy-bar {
+  background-color: yellow;
+  height: 30px;
+  width: 500px;
+  margin: 0 auto;
+  border: solid 3px rgb(26, 27, 23);
+}
