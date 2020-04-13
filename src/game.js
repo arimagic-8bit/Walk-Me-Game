@@ -84,8 +84,7 @@ class Game {
       // 1.1 create new obstacles random
 
       if (Math.random() > 0.80 && this.obstacles.length < this.maxNumberObstacles) {
-        const randomHeightPositionObs = this.canvas.height * Math.random()
-        const newObstacles = new Obstacles(this.canvas, randomHeightPositionObs, 5)
+        const newObstacles = new Obstacles(this.canvas, 490, 5, './../img/Elements/shit-drawing-png-1.png')
 
         if (this.obstacles.length === 0) {
           this.obstacles.push(newObstacles)
@@ -98,7 +97,7 @@ class Game {
 
       if (Math.random() > 0.99 && this.food.length < this.maxNumberFood) {
         const randomHeightPositionFood = this.canvas.height * Math.random()
-        const newFood = new Food(this.canvas, randomHeightPositionFood, 5)
+        const newFood = new Food(this.canvas, randomHeightPositionFood, 5, './../img/Elements/bone-drawing-3.png')
 
         if (this.food.length === 0) {
           this.food.push(newFood)

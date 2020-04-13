@@ -80,7 +80,6 @@ body {
 
 .game .canvas-container {
   flex: 1;
-  border: solid red;
 }
 
 .energy-bar {
