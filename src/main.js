@@ -22,7 +22,7 @@ function buildDom (htmlString) {
 function createSplash (params) {
   splashScreen = buildDom(`
 <main class = "start-game">
- <img class="walk-me" src="./img/Dog/Dog Opening.jpg" alt="Walk me Opening"/>
+ <img class="walk-me" src="img/Dog/DogOpening.jpg" alt="Walk me Opening"/>
  <button class="start-button">START</button>
  </main>
  `)
