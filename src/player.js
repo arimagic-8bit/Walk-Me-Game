@@ -77,7 +77,12 @@ class Dog {
 
   drawDog () {
     // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
-    this.ctx.drawImage(this.image, 0, 0, 56, 508, this.x, this.y, 100, 800)
+
+    const width = 508
+    const height = 56
+
+    this.ctx.drawImage(this.image, 0, 0, height, width, this.x, this.y, 100, 800)
+    this.ctx.drawImage(this.image, 508, 0, height, width, 100, this.y, 100, 800)
   }
 
   didCollideWithObs (obstacle) { // true or false
