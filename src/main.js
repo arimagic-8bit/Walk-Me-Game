@@ -1,9 +1,11 @@
 // // Creating different views and starting and ending the game
 
 let game // hold my game
+let nameScreen
 let splashScreen // start game screen
 let gameScreen // Game screen
 let gameOverScreen // GameOver screen
+let rankingScreen
 
 // NAME and Instructions screen OK
 // Here, include de RANKING screen after
@@ -34,6 +36,37 @@ function createSplash (params) {
   })
 }
 
+// name screen
+function createNameScreen () {
+  nameScreen = buildDom(`
+    <main class = "name-screen">
+      <form>
+        <label>Write your dog's name:</label>
+        <input id="username" type="text" placeholder="Dog's name" value="">
+      </form>
+      <div class = "instructions">
+        <h3>INSTRUCTIONS</h3>
+        <div class = "press-btn">
+          <button class ="jump-button">&#x25B2;</button> 
+          <p>JUMP!</p>
+        </div>
+        <div class = "elements">
+          <div class = "nasty">
+          <p>AVOID THIS</p>
+          <img class "nasty-poop" src = "img/Elements/shit-drawing-png-1.png" alt = "Poop IMage"/>
+          </div>
+          <div class = "good">
+          <p>TAKE THIS</p>
+          <img class = "bone" src = "img/Elements/bone-drawing-3.png" alt="Bone Draw"/>
+          </div>
+        </div>
+    </main>
+  `)
+  document.body.appendChild(nameScreen)
+
+  const nameChange = nameScreen.querySelector('.username')
+}
+
 // game screen
 
 function createGameScreen (params) {
@@ -62,10 +95,11 @@ function createGameScreen (params) {
 function createGameOver (score) {
   gameOverScreen = buildDom(`
     <main class ="game-over">
-      <h2>Dog fell asleep</h2>
-      <p>Your Score: <span>${score}</span></p>
-      <img/>
-      <button>RESTART</button>
+      <img class="game-over-image" src="img/Dog/Dog Game Over.jpg" alt="Sleepy Dog"/>
+      <div class = "score-container">
+      <p class "score">Your Score: <span>${score}</span></p>
+      </div>
+      <button class = "restart-btn">RESTART</button>
     </main>
   `)
 
@@ -73,6 +107,37 @@ function createGameOver (score) {
   restartButton.addEventListener('click', startGame)
 
   document.body.appendChild(gameOverScreen)
+}
+
+// ranking screen
+
+function createRankingScreen (playerName, newScore) {
+  rankingScreen = buildDom(`
+    <main class = "ranking-screen">
+    <h2>GOOD BOYS RANKING<h2>
+    <div>
+    </div>
+    </main>
+  `)
+
+  document.body.appendChild(rankingScreen)
+
+  // get the scores if they already exist
+
+  const topScoresString = localStorage.getItem('topScores')
+  const topScoresArr = JSON.parse(topScoresString)
+
+  // update the existing ones
+  const newScoreObj = { dog: playerName, score: newScore }
+  topScoresArr.push(newScoreObj)
+
+  // save back to localStorage
+  const updatedScoreStr = JSON.stringify(topScoresArr)
+  localStorage.setItem('topScores', updatedScoreStr)
+
+  // return the updated scores
+
+  return topScoresArr
 }
 
 // start the game, end the game
