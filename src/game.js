@@ -52,7 +52,7 @@ class Game {
     this.canvas.width = this.containerWith
     this.canvas.height = this.containerHeight
 
-    this.player = new Dog(this.canvas, this.energyYellow, './../img/Dog/Dog_White-Brown.png')
+    this.player = new Dog(this.canvas, this.energyYellow, './../img/Dog/Dog_Sprite.png')
 
     // set background src
 
@@ -109,8 +109,6 @@ class Game {
       }
 
       // player hit food
-
-      this.checkCollisions()
 
       // update player position
 
@@ -172,6 +170,8 @@ class Game {
         food.drawFood()
       })
 
+      this.checkCollisions()
+
       // terminate loop if game over
 
       if (this.gameIsOver === false) {
@@ -186,15 +186,10 @@ class Game {
 
   checkCollisions () {
     this.obstacles.forEach((obstacle) => {
-      const energyWidth = (this.energyYellow.style.width)
-      const energyNumber = Number(energyWidth.slice(0, energyWidth.length - 2))
       if (this.player.didCollideWithObs(obstacle)) {
         this.player.removeEnergy()
-
         obstacle.x = -1 * obstacle.size
-
-        if (energyNumber === 0) {
-          console.log(energyNumber)
+        if (this.energyYellow.style.width === '0px') {
           this.gameOver()
         }
       }

@@ -63,7 +63,6 @@ class Dog {
     const energyWidth = (this.energy.style.width)
     let energyNumber = Number(energyWidth.slice(0, energyWidth.length - 2))
     energyNumber -= 50
-    console.log(energyNumber)
     this.energy.style.width = energyNumber.toString() + 'px'
   }
 
@@ -77,8 +76,8 @@ class Dog {
   }
 
   drawDog () {
-    this.ctx.fillStyle = 'pink'
-    this.ctx.fillRect(this.x, this.y, this.size, this.size)
+    // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+    this.ctx.drawImage(this.image, 0, 0, 56, 508, this.x, this.y, 100, 800)
   }
 
   didCollideWithObs (obstacle) { // true or false
