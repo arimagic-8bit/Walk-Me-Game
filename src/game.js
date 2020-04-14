@@ -52,16 +52,16 @@ class Game {
     this.canvas.width = this.containerWith
     this.canvas.height = this.containerHeight
 
-    this.player = new Dog(this.canvas, this.energyYellow, './../img/Dog/Dog_Sprite.png')
+    this.player = new Dog(this.canvas, this.energyYellow, 'img/Dog/Dog_Sprite.png')
 
     // set background src
 
-    this.background1 = new Background(0, this.canvas, './../img/Background/Hills Layer 01.png')
-    this.background2 = new Background(1, this.canvas, './../img/Background/Hills Layer 02.png')
-    this.background3 = new Background(2, this.canvas, './../img/Background/Hills Layer 03.png')
-    this.background4 = new Background(3, this.canvas, './../img/Background/Hills Layer 04.png')
-    this.background5 = new Background(4, this.canvas, './../img/Background/Hills Layer 05.png')
-    this.background6 = new Background(5, this.canvas, './../img/Background/Hills Layer 06.png')
+    this.background1 = new Background(0, this.canvas, 'img/Background/Hills Layer 01.png')
+    this.background2 = new Background(1, this.canvas, 'img/Background/Hills Layer 02.png')
+    this.background3 = new Background(2, this.canvas, 'img/Background/Hills Layer 03.png')
+    this.background4 = new Background(3, this.canvas, 'img/Background/Hills Layer 04.png')
+    this.background5 = new Background(4, this.canvas, 'img/Background/Hills Layer 05.png')
+    this.background6 = new Background(5, this.canvas, 'img/Background/Hills Layer 06.png')
 
     // Event listerner for jump
 
@@ -86,7 +86,7 @@ class Game {
       // 1.1 create new obstacles random
 
       if (Math.random() > 0.80 && this.obstacles.length < this.maxNumberObstacles) {
-        const newObstacles = new Obstacles(this.canvas, 490, 5, './../img/Elements/shit-drawing-png-1.png')
+        const newObstacles = new Obstacles(this.canvas, 490, 5, 'img/Elements/shit-drawing-png-1.png')
 
         if (this.obstacles.length === 0) {
           this.obstacles.push(newObstacles)
@@ -99,7 +99,7 @@ class Game {
 
       if (Math.random() > 0.99 && this.food.length < this.maxNumberFood) {
         const randomHeightPositionFood = this.canvas.height * Math.random()
-        const newFood = new Food(this.canvas, randomHeightPositionFood, 5, './../img/Elements/bone-drawing-3.png')
+        const newFood = new Food(this.canvas, randomHeightPositionFood, 5, 'img/Elements/bone-drawing-3.png')
 
         if (this.food.length === 0) {
           this.food.push(newFood)
