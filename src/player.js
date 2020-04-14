@@ -63,6 +63,7 @@ class Dog {
     const energyWidth = (this.energy.style.width)
     let energyNumber = Number(energyWidth.slice(0, energyWidth.length - 2))
     energyNumber -= 50
+    console.log(energyNumber)
     this.energy.style.width = energyNumber.toString() + 'px'
   }
 

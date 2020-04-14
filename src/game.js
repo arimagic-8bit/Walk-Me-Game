@@ -186,12 +186,15 @@ class Game {
 
   checkCollisions () {
     this.obstacles.forEach((obstacle) => {
+      const energyWidth = (this.energyYellow.style.width)
+      const energyNumber = Number(energyWidth.slice(0, energyWidth.length - 2))
       if (this.player.didCollideWithObs(obstacle)) {
         this.player.removeEnergy()
-        console.log(this.player.addEnergy())
+
         obstacle.x = -1 * obstacle.size
 
-        if (this.energyYellow.width <= '0px') {
+        if (energyNumber === 0) {
+          console.log(energyNumber)
           this.gameOver()
         }
       }
