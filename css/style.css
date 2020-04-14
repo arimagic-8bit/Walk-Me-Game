@@ -49,6 +49,8 @@ body {
 
 /* ---- components ---- */
 
+@import url("https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap");
+
 .game {
   text-align: center;
   display: flex;
@@ -60,6 +62,44 @@ body {
   height: 50px;
   display: flex;
   align-items: center;
+}
+
+.start-game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  border: 5px dotted rgb(238, 94, 118);
+  width: 700px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.walk-me {
+  margin: 401;
+  max-width: 50%;
+  height: auto;
+  align-self: center;
+}
+
+button {
+  font-family: inherit;
+  font-size: 1em;
+}
+
+.start-button {
+  align-self: center;
+  font-family: "Luckiest Guy", cursive;
+  font-weight: bolder;
+  font-size: 20px;
+  width: 100px;
+  height: 40px;
+  border: solid 2px rgb(177, 88, 103);
+  background-color: rgb(238, 94, 118);
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .game .lives {
@@ -92,7 +132,7 @@ body {
 
 .energy-yellow {
   background-color: yellow;
-  width: 100%;
+  width: 500px;
   height: 100%;
   position: inherit;
   bottom: 56px;

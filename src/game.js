@@ -30,6 +30,7 @@ class Game {
   }
 
   // instantiate player, set the canvas and start canvas loop
+
   start () {
     // Save reference to canvas and container and create context
     const canvasContainer = document.querySelector('.canvas-container')
@@ -39,6 +40,7 @@ class Game {
     // Save reference for energy element
     this.energy = this.gameScreen.querySelector('.energy-bar .value')
     this.energyYellow = this.gameScreen.querySelector('.energy-yellow')
+    this.energyYellow.style.width = '500px'
 
     // Save reference for score element
     this.scoreElement = this.gameScreen.querySelector('.score .value')
@@ -50,7 +52,7 @@ class Game {
     this.canvas.width = this.containerWith
     this.canvas.height = this.containerHeight
 
-    this.player = new Dog(this.canvas, 5)
+    this.player = new Dog(this.canvas, this.energyYellow, './../img/Dog/Dog_White-Brown.png')
 
     // set background src
 
@@ -175,22 +177,18 @@ class Game {
       if (this.gameIsOver === false) {
         requestAnimationFrame(loop) // informamos que queremos realizar una animación en loop múltiples veces
       }
-      this.printEnergy()
+
       this.printScore()
     }.bind(this)
 
     loop() // initial invocation
   }
 
-  removeEnergy () {
-    this.energyYellow.style.width -= '50px'
-  }
-
   checkCollisions () {
     this.obstacles.forEach((obstacle) => {
       if (this.player.didCollideWithObs(obstacle)) {
-        // this.energyYellow.removeEnergy()
-
+        this.player.removeEnergy()
+        console.log(this.player.addEnergy())
         obstacle.x = -1 * obstacle.size
 
         if (this.energyYellow.width <= '0px') {
@@ -211,10 +209,6 @@ class Game {
   gameOver () {
     this.gameIsOver = true
     endGame(this.score)
-  }
-
-  printEnergy () {
-    this.energy.innerHTML = this.player.energy
   }
 
   printScore () {

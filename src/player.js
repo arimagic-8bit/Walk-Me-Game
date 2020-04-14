@@ -1,12 +1,11 @@
 'use strict'
 
 class Dog {
-  constructor (canvas, energy, energyBar) {
+  constructor (canvas, energy, src) {
     // dog properties
     this.canvas = canvas
     this.ctx = this.canvas.getContext('2d')
     this.energy = energy
-    this.energyBar = energyBar
     this.size = 100 // size of the dog
     this.x = 50 // initial x where dog starts
     this.y = this.canvas.height - this.size // // initial y where dog starts
@@ -22,6 +21,11 @@ class Dog {
 
     this.screenTop = 0
     this.screenBottom = this.canvas.height
+
+    // dog imgage
+
+    this.image = new Image()
+    this.image.src = src
   }
 
   setJump (event) {
@@ -55,13 +59,20 @@ class Dog {
     this.screenTop = 0
   }
 
-  /* removeEnergy () { // restar barra energía por tiempo // restar por colisión // aumentar por colisión
-    // this.energyBar.style -= '50px'
-    this.energy -= 1
-  } */
+  removeEnergy () {
+    const energyWidth = (this.energy.style.width)
+    let energyNumber = Number(energyWidth.slice(0, energyWidth.length - 2))
+    energyNumber -= 50
+    this.energy.style.width = energyNumber.toString() + 'px'
+  }
 
   addEnergy () {
-    if (this.energy < 5) { this.energy += 1 }
+    const energyWidth = (this.energy.style.width)
+    let energyNumber = Number(energyWidth.slice(0, energyWidth.length - 2))
+    if (energyNumber < 500) {
+      energyNumber += 50
+      this.energy.style.width = energyNumber.toString() + 'px'
+    }
   }
 
   drawDog () {

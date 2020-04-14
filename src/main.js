@@ -21,10 +21,9 @@ function buildDom (htmlString) {
 
 function createSplash (params) {
   splashScreen = buildDom(`
-<main>
-<h1 class= "main-title">WALK ME!</h1>
- <img/>
- <button>START</button>
+<main class = "start-game">
+ <img class="walk-me" src="./../img/Dog/Dog Opening.jpg" alt="Walk me Opening"/>
+ <button class="start-button">START</button>
  </main>
  `)
   document.body.appendChild(splashScreen)
@@ -44,7 +43,6 @@ function createGameScreen (params) {
       <div class="energy-bar">
         <div class ="energy-yellow">
         </div>
-        <span class="value"></span>
       </div>
       <div class="score">
         <span class="label">SCORE:</span>
