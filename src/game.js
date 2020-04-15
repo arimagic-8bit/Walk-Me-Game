@@ -93,13 +93,28 @@ class Game {
         } else if (this.obstacles[this.obstacles.length - 1].x <= this.canvas.width / 2) {
           this.obstacles.push(newObstacles)
         }
+      } else if (Math.random() > 0.90 && this.obstacles.length < this.maxNumberObstacles) {
+        const newObstacles = new Obstacles(this.canvas, 355, 5, 'img/Elements/tennis-ball-drawing-6.png')
+
+        if (this.obstacles.length === 0) {
+          this.obstacles.push(newObstacles)
+        } else if (this.obstacles[this.obstacles.length - 1].x <= this.canvas.width / 2) {
+          this.obstacles.push(newObstacles)
+        }
       }
 
       // 1.2 create new food random
 
       if (Math.random() > 0.99 && this.food.length < this.maxNumberFood) {
-        const randomHeightPositionFood = this.canvas.height * Math.random()
-        const newFood = new Food(this.canvas, randomHeightPositionFood, 5, 'img/Elements/bone-drawing-3.png')
+        const newFood = new Food(this.canvas, 490, 5, 'img/Elements/bone-drawing-3.png')
+
+        if (this.food.length === 0) {
+          this.food.push(newFood)
+        } else if (this.food[this.food.length - 1].x <= this.canvas.width / 2) {
+          this.food.push(newFood)
+        }
+      } else if (Math.random() > 0.98 && this.food.length < this.maxNumberFood) {
+        const newFood = new Food(this.canvas, 350, 5, 'img/Elements/bone-drawing-3.png')
 
         if (this.food.length === 0) {
           this.food.push(newFood)

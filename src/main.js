@@ -6,6 +6,7 @@ let splashScreen // start game screen
 let gameScreen // Game screen
 let gameOverScreen // GameOver screen
 let rankingScreen
+let nameChange
 
 // NAME and Instructions screen OK
 // Here, include de RANKING screen after
@@ -25,14 +26,17 @@ function createSplash (params) {
   splashScreen = buildDom(`
 <main class = "start-game">
  <img class="walk-me" src="img/Dog/DogOpening.jpg" alt="Walk me Opening"/>
+ <div class ="btn-container">
  <button class="start-button">START</button>
+ <button class= "ranking-button">RANKING</button>
+ </div>
  </main>
  `)
   document.body.appendChild(splashScreen)
 
-  const startButton = splashScreen.querySelector('button')
+  const startButton = splashScreen.querySelector('.start-button')
   startButton.addEventListener('click', function (params) {
-    startGame()
+    startNameScreen()
   })
 }
 
@@ -41,7 +45,7 @@ function createNameScreen () {
   nameScreen = buildDom(`
     <main class = "name-screen">
       <form>
-        <label>Write your dog's name:</label>
+        <label>HELLO<br>my name is</label>
         <input id="username" type="text" placeholder="Dog's name" value="">
       </form>
       <div class = "instructions">
@@ -60,11 +64,21 @@ function createNameScreen () {
           <img class = "bone" src = "img/Elements/bone-drawing-3.png" alt="Bone Draw"/>
           </div>
         </div>
+      </div>
+        <button class="start-button-name">START</button>
     </main>
   `)
   document.body.appendChild(nameScreen)
 
-  const nameChange = nameScreen.querySelector('.username')
+  const startButton = nameScreen.querySelector('.start-button-name')
+  startButton.addEventListener('click', function (params) {
+    nameChange = nameScreen.querySelector('#username').value
+
+    if (nameChange === '') {
+      nameChange = 'SUPER DOG'
+    }
+    startGame()
+  })
 }
 
 // game screen
@@ -99,12 +113,18 @@ function createGameOver (score) {
       <div class = "score-container">
       <p class "score">Your Score: <span>${score}</span></p>
       </div>
-      <button class = "restart-btn">RESTART</button>
+      <div class= "btn-container">
+        <button class = "restart-btn">RESTART</button>
+        <button class = "menu-btn">MENU</button>
+      </div>
     </main>
   `)
 
-  var restartButton = gameOverScreen.querySelector('button')
+  var restartButton = gameOverScreen.querySelector('.restart-btn')
   restartButton.addEventListener('click', startGame)
+
+  var menuButton = gameOverScreen.querySelector('.menu-btn')
+  menuButton.addEventListener('click', goToSplash)
 
   document.body.appendChild(gameOverScreen)
 }
@@ -117,6 +137,7 @@ function createRankingScreen (playerName, newScore) {
     <h2>GOOD BOYS RANKING<h2>
     <div>
     </div>
+    <button class ="return-btn">RETURN</button>
     </main>
   `)
 
@@ -140,8 +161,14 @@ function createRankingScreen (playerName, newScore) {
   return topScoresArr
 }
 
-// start the game, end the game
+// go to name screen
 
+function startNameScreen () {
+  removeScreen()
+  createNameScreen()
+}
+
+// start the game, end the game
 function startGame (params) {
   removeScreen()
   createGameScreen()
@@ -164,6 +191,13 @@ function endGame (score) {
 
 function removeScreen (params) {
   document.body.innerHTML = ''
+}
+
+// return to splash screen
+
+function goToSplash () {
+  removeScreen()
+  createSplash()
 }
 
 // Run the start screen when page is loaded
