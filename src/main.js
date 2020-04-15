@@ -58,12 +58,17 @@ function createNameScreen () {
         </div>
         <div class = "elements">
           <div class = "nasty">
-          <p>AVOID THIS</p>
-          <img class "nasty-poop" src = "img/Elements/shit-drawing-png-1.png" alt = "Poop IMage"/>
+          <img class = "BadDog" src = "img/Dog/BadDog.jpg" alt = "Sad Dog Image"
+          </div>
+          <div>
+          <img class= "nasty-poop" src = "img/Elements/shit-drawing-png-1.png" alt = "Poop IMage"/>
+          </div>
           </div>
           <div class = "good">
-          <p>TAKE THIS</p>
-          <img class = "bone" src = "img/Elements/bone-drawing-3.png" alt="Bone Draw"/>
+            <img class = "GoodDog" src = "img/Dog/GoodDog.jpg" alt = "Happy Dog Image"
+          </div>
+          <div>
+            <img class = "bone" src = "img/Elements/bone-drawing-3.png" alt="Bone Draw"/>
           </div>
         </div>
       </div>
@@ -79,7 +84,8 @@ function createNameScreen () {
     if (name === '') {
       name = 'SUPER DOG'
     }
-    startGame()
+    console.log(name)
+    startGame(name)
   })
 }
 
@@ -137,10 +143,9 @@ function createGameOver (score) {
 
 // ranking screen
 
-function createRankingScreen (name, newScore) {
+function createRankingScreen () {
   rankingScreen = buildDom(`
     <main class = "ranking-screen">
-      <h2>GOOD BOYS RANKING<h2>
       <table id = "scoretable">
         <thead>
           <tr>
@@ -167,6 +172,68 @@ function createRankingScreen (name, newScore) {
   const returnButton = rankingScreen.querySelector('.return-btn')
   returnButton.addEventListener('click', goToSplash)
 
+  // convert it back into an array in order to get data from local storage
+
+  const scoreBoard = JSON.parse(localStorage.getItem('scoreArray'))
+  if (scoreBoard) {
+    scoreBoard.sort(function (a, b) {
+      return b.score - a.score
+    })
+
+    // print the best 5 scores into a table
+
+    for (var i = 0; i < 10; i++) {
+      var playersName = rankingScreen.querySelector('#name' + (i + 1))
+      var playersScore = rankingScreen.querySelector('#score' + (i + 1))
+      if (scoreBoard[i]) {
+        playersName.innerHTML = scoreBoard[i].name
+        console.log(scoreBoard[i].name)
+        playersScore.innerHTML = scoreBoard[i].score
+        console.log(scoreBoard[i].score)
+      } else {
+        playersName.innerHTML = ''
+        playersScore.innerHTML = ''
+      }
+    }
+  }
+
+  // print the score to the screen
+  /* if (spanScore) {
+    console.log(spanScore)
+    spanScore.innerText = newScore
+  } */
+
+  document.body.appendChild(rankingScreen)
+}
+
+// go to name screen
+
+function startNameScreen () {
+  removeScreen()
+  createNameScreen()
+}
+
+// start the game, end the game
+function startGame (name) {
+  removeScreen()
+  createGameScreen()
+
+  game = new Game(name)
+  game.gameScreen = gameScreen
+
+  // Start the game
+  game.start()
+
+  // when game starts, load the background
+}
+
+function endGame (score, name) {
+  removeScreen()
+  createGameOver(score)
+  saveScoreandName(score, name)
+}
+
+function saveScoreandName (newScore, name) {
   // store player's name and score
 
   let scoreArray
@@ -183,65 +250,10 @@ function createRankingScreen (name, newScore) {
   }
 
   scoreArray.push(newDog)
-
+  console.log(scoreArray)
   // stringify the array in order to add it to local storage
 
   localStorage.setItem('scoreArray', JSON.stringify(scoreArray))
-
-  // convert it back into an array in order to get data from local storage
-
-  const scoreBoard = JSON.parse(localStorage.getItem('scoreArray'))
-  scoreBoard.sort(function (a, b) {
-    return a.score - b.score
-  })
-
-  // print the best 5 scores into a table
-
-  for (var i = 0; i < 10; i++) {
-    var playersName = rankingScreen.querySelector('#name' + (i + 1))
-    var playersScore = rankingScreen.querySelector('#score' + (i + 1))
-    if (scoreBoard[i]) {
-      playersName.innerHTML = scoreBoard[i].name
-      playersScore.innerHTML = scoreBoard[i].score
-    } else {
-      playersName.innerHTML = ''
-      playersScore.innerHTML = ''
-    }
-  }
-
-  // print the score to the screen
-  if (spanScore) {
-    console.log(spanScore)
-    spanScore.innerText = newScore
-  }
-
-  document.body.appendChild(rankingScreen)
-}
-
-// go to name screen
-
-function startNameScreen () {
-  removeScreen()
-  createNameScreen()
-}
-
-// start the game, end the game
-function startGame (params) {
-  removeScreen()
-  createGameScreen()
-
-  game = new Game()
-  game.gameScreen = gameScreen
-
-  // Start the game
-  game.start()
-
-  // when game starts, load the background
-}
-
-function endGame (score) {
-  removeScreen()
-  createGameOver(score)
 }
 
 // Remove screen everytime another screen will show

@@ -1,7 +1,8 @@
 'use strict'
 
 class Game {
-  constructor () {
+  constructor (name) {
+    this.name = name
     this.player = null
     this.obstacles = []
     this.food = []
@@ -221,7 +222,7 @@ class Game {
 
   gameOver () {
     this.gameIsOver = true
-    endGame(this.score)
+    endGame(this.score, this.name)
   }
 
   printScore () {
