@@ -6,7 +6,8 @@ let splashScreen // start game screen
 let gameScreen // Game screen
 let gameOverScreen // GameOver screen
 let rankingScreen
-let nameChange
+let name
+let spanScore
 
 // NAME and Instructions screen OK
 // Here, include de RANKING screen after
@@ -28,16 +29,17 @@ function createSplash (params) {
  <img class="walk-me" src="img/Dog/DogOpening.jpg" alt="Walk me Opening"/>
  <div class ="btn-container">
  <button class="start-button">START</button>
- <button class= "ranking-button">RANKING</button>
+ <button class="ranking-button">RANKING</button>
  </div>
  </main>
  `)
   document.body.appendChild(splashScreen)
 
   const startButton = splashScreen.querySelector('.start-button')
-  startButton.addEventListener('click', function (params) {
-    startNameScreen()
-  })
+  startButton.addEventListener('click', startNameScreen)
+
+  const rankingButton = splashScreen.querySelector('.ranking-button')
+  rankingButton.addEventListener('click', goToRanking)
 }
 
 // name screen
@@ -72,10 +74,10 @@ function createNameScreen () {
 
   const startButton = nameScreen.querySelector('.start-button-name')
   startButton.addEventListener('click', function (params) {
-    nameChange = nameScreen.querySelector('#username').value
+    name = nameScreen.querySelector('#username').value
 
-    if (nameChange === '') {
-      nameChange = 'SUPER DOG'
+    if (name === '') {
+      name = 'SUPER DOG'
     }
     startGame()
   })
@@ -126,39 +128,94 @@ function createGameOver (score) {
   var menuButton = gameOverScreen.querySelector('.menu-btn')
   menuButton.addEventListener('click', goToSplash)
 
+  // save the player's score
+
+  spanScore = gameOverScreen.querySelector('span')
+
   document.body.appendChild(gameOverScreen)
 }
 
 // ranking screen
 
-function createRankingScreen (playerName, newScore) {
+function createRankingScreen (name, newScore) {
   rankingScreen = buildDom(`
     <main class = "ranking-screen">
-    <h2>GOOD BOYS RANKING<h2>
-    <div>
-    </div>
-    <button class ="return-btn">RETURN</button>
+      <h2>GOOD BOYS RANKING<h2>
+      <table id = "scoretable">
+        <thead>
+          <tr>
+            <th>GOOD BOYS RANKING</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td id='name1'></td><td id='score1'></td></tr>
+          <tr><td id='name2'></td><td id='score2'></td></tr>
+          <tr><td id='name3'></td><td id='score3'></td></tr>
+          <tr><td id='name4'></td><td id='score4'></td></tr>
+          <tr><td id='name5'></td><td id='score5'></td></tr>
+          <tr><td id='name6'></td><td id='score6'></td></tr>
+          <tr><td id='name7'></td><td id='score7'></td></tr>
+          <tr><td id='name8'></td><td id='score8'></td></tr>
+          <tr><td id='name9'></td><td id='score9'></td></tr>
+          <tr><td id='name10'></td><td id='score10'></td></tr>
+        </tbody>
+      </table>
+      <button class ="return-btn">RETURN</button>
     </main>
   `)
 
+  const returnButton = rankingScreen.querySelector('.return-btn')
+  returnButton.addEventListener('click', goToSplash)
+
+  // store player's name and score
+
+  let scoreArray
+
+  if (localStorage.getItem('scoreArray') === null) {
+    scoreArray = []
+  } else {
+    scoreArray = JSON.parse(localStorage.getItem('scoreArray'))
+  }
+
+  const newDog = {
+    name: name,
+    score: newScore
+  }
+
+  scoreArray.push(newDog)
+
+  // stringify the array in order to add it to local storage
+
+  localStorage.setItem('scoreArray', JSON.stringify(scoreArray))
+
+  // convert it back into an array in order to get data from local storage
+
+  const scoreBoard = JSON.parse(localStorage.getItem('scoreArray'))
+  scoreBoard.sort(function (a, b) {
+    return a.score - b.score
+  })
+
+  // print the best 5 scores into a table
+
+  for (var i = 0; i < 10; i++) {
+    var playersName = rankingScreen.querySelector('#name' + (i + 1))
+    var playersScore = rankingScreen.querySelector('#score' + (i + 1))
+    if (scoreBoard[i]) {
+      playersName.innerHTML = scoreBoard[i].name
+      playersScore.innerHTML = scoreBoard[i].score
+    } else {
+      playersName.innerHTML = ''
+      playersScore.innerHTML = ''
+    }
+  }
+
+  // print the score to the screen
+  if (spanScore) {
+    console.log(spanScore)
+    spanScore.innerText = newScore
+  }
+
   document.body.appendChild(rankingScreen)
-
-  // get the scores if they already exist
-
-  const topScoresString = localStorage.getItem('topScores')
-  const topScoresArr = JSON.parse(topScoresString)
-
-  // update the existing ones
-  const newScoreObj = { dog: playerName, score: newScore }
-  topScoresArr.push(newScoreObj)
-
-  // save back to localStorage
-  const updatedScoreStr = JSON.stringify(topScoresArr)
-  localStorage.setItem('topScores', updatedScoreStr)
-
-  // return the updated scores
-
-  return topScoresArr
 }
 
 // go to name screen
@@ -198,6 +255,13 @@ function removeScreen (params) {
 function goToSplash () {
   removeScreen()
   createSplash()
+}
+
+// go to Ranking screen
+
+function goToRanking () {
+  removeScreen()
+  createRankingScreen()
 }
 
 // Run the start screen when page is loaded
