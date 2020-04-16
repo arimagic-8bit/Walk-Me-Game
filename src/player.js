@@ -11,7 +11,6 @@ class Dog {
     this.y = this.canvas.height - this.size // // initial y where dog starts
 
     // handle dog's direction
-    this.direction = 0// 0 not moving // -1 while jumping // 1 returning initial position
     this.jumping = false
     this.ySpeed = 0
 
