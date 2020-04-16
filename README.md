@@ -47,7 +47,11 @@ A dog that only jumps and has to continue running without touching negative elem
 - obstacles
 - food
 - gameIsOver
+<<<<<<< HEAD
 - energy
+=======
+- energy 
+>>>>>>> a58d5b7d4e5620ed6818e49103e645b7c9d93bbd
 - score
 - gameScreen
 - energyYellow
@@ -98,7 +102,6 @@ didCollideWithFood
 #### 5. Obstacle & Food Constructor
 
 ##### **Properties**
-
 - canvas
 - ctx
 - x position
@@ -135,10 +138,17 @@ didCollideWithFood
   - Start the game
   - Goes to nameScreen when Start button is clicked
   - Goes to rankingScreen when Ranking button is clicked
+<<<<<<< HEAD
 - nameScreen
 - Saves player's name
 - Shows game's instructions
 - Goes to gameScreen when Start button is clicked
+=======
+ - nameScreen
+  - Saves player's name
+  - Shows game's instructions
+  - Goes to gameScreen when Start button is clicked
+>>>>>>> a58d5b7d4e5620ed6818e49103e645b7c9d93bbd
 - gameScreen
   - Game running while energy bar > 0
   - Goes to gameoverScreen if energy bar < 0
