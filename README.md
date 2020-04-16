@@ -22,7 +22,7 @@ A dog that only jumps and has to continue running without touching negative elem
 
 6. obstacle.js
 
-7. bonus.js
+7. background.js
 
 #### 1. index.html file
 
@@ -30,8 +30,10 @@ A dog that only jumps and has to continue running without touching negative elem
 
 - buildDom
 - createStartScreen / removeStartScreen
+- createNameScreen / removeNameScreen
 - createGameScreen / removeGameScreen
 - createGameOverScreen / removeGameOverScreen
+- createRankingScreen/ removeRankingScreen
 - startGame / endGame
 
 #### 3. Game Constructor
@@ -45,9 +47,14 @@ A dog that only jumps and has to continue running without touching negative elem
 - obstacles
 - food
 - gameIsOver
-- energy bar
-- loopCount
-- timeScore
+- energy 
+- score
+- gameScreen
+- energyYellow
+- background (x6)
+- maxNumberObstacles
+- maxNumberFood
+- gameSound
 
 ##### **Methods**
 
@@ -55,9 +62,6 @@ A dog that only jumps and has to continue running without touching negative elem
 - startLoop
 - checkCollision
 - gameOver
-- reduceEnergy
-- printEnergy
-- printScore
 
 #### 4. Player Constructor
 
@@ -67,56 +71,84 @@ A dog that only jumps and has to continue running without touching negative elem
 - ctx
 - x position
 - y position
-- width
-- height
-- lives
+- size
+- energy
 - image
-- direction
+- ySpeed
+- jumping
+- dogTop
+- dogBottom
+- screenTop
+- screenBottom
+- jumpSound
+- barkSound
+- hitSound
 
 ##### **Methods**
 
-draw
-jump
-collidedWithObstacle
-catchedFood
+drawDog
+setJump
+handleScreenCollision
+updateDogPosition
 removeEnergy
 addEnergy
+didCollideWithObs
+didCollideWithFood
 
-#### 5. Obstacle Constructor
+#### 5. Obstacle & Food Constructor
 
 ##### **Properties**
-
 - canvas
 - ctx
 - x position
 - y position
-- width
-- height
-- row
+- size
 - speed
 - image
 
 ##### **Methods**
 
-- draw
+- drawObstacle & drawFood
+- updateObsPosition & updateFoodPosition
+- isInsideScreen
 
-#### 6. Bonus Constructor
+#### 6. Background Constructor
 
 ##### **Properties**
 
+- speed
+- x position
+- x secundary position
+- canvas
+- ctx
+- image
+
 ##### **Methods**
+
+- move
+- draw
 
 ### States and States Transitions
 
 - startScreen
   - Start the game
+  - Goes to nameScreen when Start button is clicked
+  - Goes to rankingScreen when Ranking button is clicked
+ - nameScreen
+  - Saves player's name
+  - Shows game's instructions
   - Goes to gameScreen when Start button is clicked
 - gameScreen
   - Game running while energy bar > 0
   - Goes to gameoverScreen if energy bar < 0 
 - gameoverScreen
-  - Shows Game Over message and Restart button
+  - Shows Game Over message, Restart button and Menu button
+  - Saves player's score
   - Goes back to Game Screen when Restart button is clicked
+  - Goes back to startScreen when Menu button is clicked
+- rankingScreen
+  - Shows a ranking chart with all the players' name and score
+  - Returns to startScreen when Return button is clicked
 
 ### Tasks
 
@@ -176,8 +208,8 @@ https://trello.com/b/E9ePiygb/walk-me-game
 
 **Git**
 
-https://github.com/arimagic-8bit/Walk-Me-Game
+https://arimagic-8bit.github.io/Walk-Me-Game/
 
 **Slides**
 
-URls for the project presentation (slides) Link Slides.com
+https://docs.google.com/presentation/d/1zmoszPUtXOAKnxzbJQJQeGl9yeWb4ec2Pi5imxzahug/edit#slide=id.g838f2ca63a_0_0
