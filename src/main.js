@@ -153,16 +153,16 @@ function createRankingScreen () {
           </tr>
         </thead>
         <tbody>
-          <tr><td id='name1'></td><td id='score1'></td></tr>
-          <tr><td id='name2'></td><td id='score2'></td></tr>
-          <tr><td id='name3'></td><td id='score3'></td></tr>
-          <tr><td id='name4'></td><td id='score4'></td></tr>
-          <tr><td id='name5'></td><td id='score5'></td></tr>
-          <tr><td id='name6'></td><td id='score6'></td></tr>
-          <tr><td id='name7'></td><td id='score7'></td></tr>
-          <tr><td id='name8'></td><td id='score8'></td></tr>
-          <tr><td id='name9'></td><td id='score9'></td></tr>
-          <tr><td id='name10'></td><td id='score10'></td></tr>
+          <tr><td class= "name-table" id='name1'></td><td id='score1'></td></tr>
+          <tr><td class= "name-table" id='name2'></td><td id='score2'></td></tr>
+          <tr><td class= "name-table" id='name3'></td><td id='score3'></td></tr>
+          <tr><td class= "name-table" id='name4'></td><td id='score4'></td></tr>
+          <tr><td class= "name-table" id='name5'></td><td id='score5'></td></tr>
+          <tr><td class= "name-table" id='name6'></td><td id='score6'></td></tr>
+          <tr><td class= "name-table" id='name7'></td><td id='score7'></td></tr>
+          <tr><td class= "name-table" id='name8'></td><td id='score8'></td></tr>
+          <tr><td class= "name-table" id='name9'></td><td id='score9'></td></tr>
+          <tr><td class= "name-table" id='name10'></td><td id='score10'></td></tr>
         </tbody>
       </table>
       <button class ="return-btn">RETURN</button>
