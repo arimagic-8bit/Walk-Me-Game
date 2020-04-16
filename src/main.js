@@ -30,7 +30,7 @@ function createSplash (params) {
  <button class="start-button">START</button>
  <button class="ranking-button">RANKING</button>
  </div>
- <audio controls='true' class = 'sound' src='sounds/menuSound.mp3'>If stream does not start automatically press the play button</audio >
+ <audio controls='true' autoplay class = 'sound' src='sounds/menuSound.mp3'>If stream does not start automatically press the play button</audio >
  </main>
  `)
 
@@ -59,6 +59,10 @@ function createNameScreen () {
         <div class = "press-btn">
           <button class ="jump-button">&#x25B2;</button> 
           <p>JUMP!</p>
+        </div>
+        <div class = "name-el">
+        <h4 class = "avoid" >AVOID!</h4>
+        <h4 class = "take" >TAKE!</h4>
         </div>
         <div class = "elements">
           <div class = "nasty">
@@ -129,7 +133,7 @@ function createGameOver (score) {
         <button class = "restart-btn">RESTART</button>
         <button class = "menu-btn">MENU</button>
       </div>
-      <audio controls='true' class = 'sound' src='sounds/GameOver.mp3'>If stream does not start automatically press the play button</audio >
+      <audio controls='true' autoplay class = 'sound' src='sounds/GameOver.mp3'>If stream does not start automatically press the play button</audio >
     </main>
   `)
 
@@ -280,5 +284,3 @@ function goToRanking () {
 // Run the start screen when page is loaded
 
 window.addEventListener('load', createSplash)
-
-// ranking screen
