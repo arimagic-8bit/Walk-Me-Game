@@ -31,6 +31,7 @@ class Game {
     // sound elements
 
     this.gameSound = new Audio('sounds/GameScreenSound.mp3')
+    
   }
 
   // instantiate player, set the canvas and start canvas loop

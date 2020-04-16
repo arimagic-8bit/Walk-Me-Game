@@ -9,8 +9,7 @@ let rankingScreen
 let name
 let spanScore
 
-// NAME and Instructions screen OK
-// Here, include de RANKING screen after
+// sounds
 
 // Functions
 
@@ -31,9 +30,14 @@ function createSplash (params) {
  <button class="start-button">START</button>
  <button class="ranking-button">RANKING</button>
  </div>
+ <audio controls='true' class = 'sound' src='sounds/menuSound.mp3'>If stream does not start automatically press the play button</audio >
  </main>
  `)
+
   document.body.appendChild(splashScreen)
+
+  const soundMenu = splashScreen.querySelector('.sound')
+  soundMenu.volume = 0.1
 
   const startButton = splashScreen.querySelector('.start-button')
   startButton.addEventListener('click', startNameScreen)
@@ -196,12 +200,6 @@ function createRankingScreen () {
       }
     }
   }
-
-  // print the score to the screen
-  /* if (spanScore) {
-    console.log(spanScore)
-    spanScore.innerText = newScore
-  } */
 
   document.body.appendChild(rankingScreen)
 }

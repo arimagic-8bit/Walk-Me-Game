@@ -26,12 +26,21 @@ class Dog {
 
     this.image = new Image()
     this.image.src = src
+
+    // jump sound
+    this.jumpSound = new Audio('sounds/Jump.mp3')
+    this.barkSound = new Audio('sounds/Barking.mp3')
+    this.hitSound = new Audio('sounds/Hit.mp3')
   }
 
   setJump (event) {
     if (event === 'up' && this.jumping === false) { // button up
       this.ySpeed -= 9
       this.jumping = true
+
+      this.jumpSound.currentTime = 0
+      this.jumpSound.volume = 0.4
+      this.jumpSound.play()
     }
   }
 
@@ -64,6 +73,10 @@ class Dog {
     let energyNumber = Number(energyWidth.slice(0, energyWidth.length - 2))
     energyNumber -= 50
     this.energy.style.width = energyNumber.toString() + 'px'
+
+    this.hitSound.currentTime = 0
+    this.hitSound.volume = 0.2
+    this.hitSound.play()
   }
 
   addEnergy () {
@@ -72,6 +85,10 @@ class Dog {
     if (energyNumber < 500) {
       energyNumber += 50
       this.energy.style.width = energyNumber.toString() + 'px'
+
+      this.barkSound.currentTime = 0
+      this.barkSound.volume = 0.4
+      this.barkSound.play()
     }
   }
 
