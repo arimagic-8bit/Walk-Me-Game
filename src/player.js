@@ -87,7 +87,7 @@ class Dog {
       this.energy.style.width = energyNumber.toString() + 'px'
 
       this.barkSound.currentTime = 0
-      this.barkSound.volume = 0.4
+      this.barkSound.volume = 0.6
       this.barkSound.play()
     }
   }

@@ -129,6 +129,7 @@ function createGameOver (score) {
         <button class = "restart-btn">RESTART</button>
         <button class = "menu-btn">MENU</button>
       </div>
+      <audio controls='true' class = 'sound' src='sounds/GameOver.mp3'>If stream does not start automatically press the play button</audio >
     </main>
   `)
 
@@ -137,6 +138,9 @@ function createGameOver (score) {
 
   var menuButton = gameOverScreen.querySelector('.menu-btn')
   menuButton.addEventListener('click', goToSplash)
+
+  var endMusic = gameOverScreen.querySelector('.sound')
+  endMusic.volume = 0.1
 
   // save the player's score
 
@@ -221,7 +225,6 @@ function startGame (name) {
 
   // Start the game
   game.start()
-
   // when game starts, load the background
 }
 

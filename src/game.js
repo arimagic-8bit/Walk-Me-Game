@@ -31,7 +31,6 @@ class Game {
     // sound elements
 
     this.gameSound = new Audio('sounds/GameScreenSound.mp3')
-    
   }
 
   // instantiate player, set the canvas and start canvas loop
@@ -87,6 +86,7 @@ class Game {
   startLoop () {
     const loop = function () {
       // play game music
+
       this.gameSound.volume = 0.2
       this.gameSound.play()
       // Update the state of player and other elements
@@ -229,6 +229,7 @@ class Game {
 
   gameOver () {
     this.gameSound.pause()
+
     this.gameIsOver = true
     endGame(this.score, this.name)
   }
