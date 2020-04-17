@@ -222,3 +222,16 @@ https://arimagic-8bit.github.io/Walk-Me-Game/
 **Slides**
 
 https://docs.google.com/presentation/d/1zmoszPUtXOAKnxzbJQJQeGl9yeWb4ec2Pi5imxzahug/edit#slide=id.g838f2ca63a_0_0
+
+**Credits**
+
+- Background - edermunizz 
+https://edermunizz.itch.io/free-pixel-art-hill
+
+- Dog sprite - Benvictus
+https://benvictus.itch.io/pixel-dogs
+
+- Start screen song - TheTrollFaceMan
+https://www.youtube.com/watch?v=-AIPMa1-MKs
+
+- Game Over song - Undertale Game Over Theme by Toby Fox
